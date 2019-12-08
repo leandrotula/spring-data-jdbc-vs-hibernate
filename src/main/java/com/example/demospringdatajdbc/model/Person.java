@@ -1,29 +1,22 @@
 package com.example.demospringdatajdbc.model;
 
-import javax.persistence.*;
-import java.util.HashSet;
+import org.springframework.data.annotation.Id;
+
 import java.util.Set;
 
-@Entity
 public class Person {
 
     @Id
-    @GeneratedValue
     private Long id;
-
     private String name;
-
     private String lastName;
+    private Set<Car> cars;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "person", fetch = FetchType.EAGER)
-    private Set<Car> cars = new HashSet<>();
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
+    public Person(Long id, String name, String lastName, Set<Car> cars) {
         this.id = id;
+        this.name = name;
+        this.lastName = lastName;
+        this.cars = cars;
     }
 
     public String getName() {

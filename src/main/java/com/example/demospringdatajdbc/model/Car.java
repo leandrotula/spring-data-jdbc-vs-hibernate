@@ -1,26 +1,20 @@
 package com.example.demospringdatajdbc.model;
 
-import javax.persistence.*;
+import org.springframework.data.annotation.Id;
 
-@Entity
 public class Car {
 
     @Id
-    @GeneratedValue
     private Long id;
 
     private String brand;
 
-    @ManyToOne
-    @JoinColumn(name = "person_id")
-    private Person person;
+    private Long person;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
+    public Car(Long id, String brand, Long person) {
         this.id = id;
+        this.brand = brand;
+        this.person = person;
     }
 
     public String getBrand() {
@@ -31,11 +25,11 @@ public class Car {
         this.brand = brand;
     }
 
-    public Person getPerson() {
+    public Long getPerson() {
         return person;
     }
 
-    public void setPerson(Person person) {
+    public void setPerson(Long person) {
         this.person = person;
     }
 }
